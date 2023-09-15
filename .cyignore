@@ -1,0 +1,9 @@
+$(SEARCH_mbedtls)/3rdparty
+$(SEARCH_mbedtls)/configs
+$(SEARCH_mbedtls)/programs
+$(SEARCH_mbedtls)/scripts
+$(SEARCH_mbedtls)/tests
+$(SEARCH_mbedtls)/doxygen
+$(SEARCH_mbedtls)/library/net_sockets.c
+$(SEARCH_mbedtls)/library/psa_crypto_driver_wrappers.c
+$(SEARCH_mbedtls)/library/timing.c
