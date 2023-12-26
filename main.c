@@ -24,7 +24,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *********************************************************************************************************************/
-
 /*********************************************************************************************************************/
 /*-----------------------------------------------------Includes------------------------------------------------------*/
 /*********************************************************************************************************************/
@@ -135,8 +134,8 @@ static const uint8_t MESSAGE[512] =
  * Function Name: main
  * Summary:
  *  This is the main function.
- *  It sets up SAR ADC with default setting then inputs software trigger to start AD conversion.
- *  The main while loop captures the command from terminal and stores the value to global variable.
+ *  It sets up the crypto core followed by hashing of data using crypto block as well as using MbedTLS library and
+ *  finding out the time taken to generate the hash
  * Parameters:
  *  none
  * Return:
@@ -179,8 +178,10 @@ int main(void)
     /* Enable the Crypto block. */
     Cy_Crypto_Core_Enable(CRYPTO);
 
+#if defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
     /* Disable D cache because Crypto block also reads data in the SRAM */
     SCB_DisableDCache();
+#endif
 
     /* TCPWM Counter Mode initial */
     if (CY_TCPWM_SUCCESS != Cy_TCPWM_Counter_Init(TCPWM_COUNTER_HW, TCPWM_COUNTER_NUM, &TCPWM_COUNTER_config))
